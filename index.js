@@ -10,7 +10,6 @@ const userInfoContainer = document.querySelector(".user-info-container");
 const searchInput=document.querySelector("[data-searchInput]");
 
 
-
 let currentTab=userTab;
 let API_key = "60e9cd966923d40a6a5e8f40dd2cf6a0";
 currentTab.classList.add('current-tab');
@@ -79,6 +78,10 @@ async function fetchUserWeatherInfo(coordinates){
         // console.log(e)
     }
 }
+//error handle
+function handleError(){
+    userInfoContainer.setAttribute('background-image','https://imgs.search.brave.com/AGxhohxx7OB-qacvra1J3pmoHC5QcU4h9gYNH_DFu_Q/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9vcmRl/cnMuZml0Y2hlZi5j/by56YS9hc3NldHMv/aW1nLzQwNC1lcnJv/ci1wYWdlLW5vdC1m/b3VuZC5qcGc')
+}
 
 //render info
 function renderWeatherInfo(weatherInfo){
@@ -96,11 +99,17 @@ function renderWeatherInfo(weatherInfo){
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
-    temp.innerText = `${weatherInfo?.main?.temp} ℃`;
-    windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
-    humidity.innerText = `${weatherInfo?.main?.humidity} %`;
-    cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
-    
+    if(`${weatherInfo?.main?.temp}`===undefined){
+        handleError();
+    }
+    else{
+        
+        temp.innerText = `${weatherInfo?.main?.temp} ℃`;
+        windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
+        humidity.innerText = `${weatherInfo?.main?.humidity} %`;
+        cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+        
+    }
 }
 
 //grant access of location
@@ -146,11 +155,17 @@ async function fetchSearchWeatherInfo(city)
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`
           );
         const data=await response.json();
+        console.log(data);
+        if(data?.message==='city not found')
+            throw new Error(response.message);
         loadingScreen.classList.remove('active');
+        eroorContainer.classList.remove('active');
         userInfoContainer.classList.add('active');
         renderWeatherInfo(data);
     }
     catch(e){
         
+        loadingScreen.classList.remove('active');
+        eroorContainer.classList.add('active');
     }
 }
