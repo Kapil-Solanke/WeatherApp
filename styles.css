@@ -86,19 +86,20 @@ h1 {
     letter-spacing: 0.75px;
 }
 
-.grant-location-container.active {
-    display: flex;
-}
-.btn {
+.location-btn {
     all: unset;
     font-size: 0.85rem;
     text-transform: uppercase;
     border-radius: 5px;
-    background-color: var(--colorDark2);
-    cursor: pointer;
     padding: 10px 30px;
     margin-bottom: 10px;
+    border: 2px solid ;
 }
+
+.grant-location-container.active {
+    display: flex;
+}
+
 .loading-container {
     display: none;  
 
@@ -207,7 +208,11 @@ h1 {
 .form-container input:focus{
     outline: 3px solid rgba(255, 255, 255, 0.7);
 }
+
 .btn{
+    all: unset;
+    cursor: pointer;
+    background-color: var(--colorDark2);
     padding: unset;
     margin-right: auto;
     border-radius: 100%; 
@@ -216,4 +221,24 @@ h1 {
     justify-content: center;
     height: 2.5rem;
     width: 2.5rem;
+}
+
+.error-container{
+    display: none;
+}
+.error-container.active{
+    display: flex;
+    height: 20rem;
+    max-height: fit-content;
+    margin-top: 2rem;
+    font-size: 2rem;
+    color: slategrey;
+}
+.error-container p{
+    margin-bottom: 2rem;
+}
+.error-container img{
+    height: 100%;
+    width: 100%;
+    min-width: 200px;
 }
