@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="mystyle.css" />
   </head>
   <body>
     
@@ -26,17 +26,26 @@
             <img src="assets/location.png" alt="locationImage" loading="lazy" width="80" height="80"/>
             <p>Grant Location Access</p>
             <p>Allow Access to get weather Information</p>
-            <button class="btn" data-grantAccess>Grant Access</button>
+            <button class="location-btn" data-grantAccess>
+              Grant Access
+            </button>
           </div>
           <!-- search form -->
           <form class="form-container" data-searchForm>
             <input type="text" placeholder="Search For City..." data-searchInput>
-            <button class="btn"><img src="./assets/search.png" alt="Search" width="20" height="20" loading="lazy"></button>
+            <button class="btn">
+              <img src="./assets/search.png" alt="Search" width="20" height="20" loading="lazy">
+            </button>
           </form>
           <!-- Loading Screen Container -->
           <div class="loading-container sub-container">
             <img src="./assets/loading.gif" width="150" height="150" />
             <p>Loading</p>
+          </div>
+          <!-- error handler -->
+          <div class="error-container sub-container" errorContainer>
+            <p>Please Give a valid City name</p>
+            <img src="https://imgs.search.brave.com/AGxhohxx7OB-qacvra1J3pmoHC5QcU4h9gYNH_DFu_Q/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9vcmRl/cnMuZml0Y2hlZi5j/by56YS9hc3NldHMv/aW1nLzQwNC1lcnJv/ci1wYWdlLW5vdC1m/b3VuZC5qcGc" width="150" height="150" />
           </div>
 
           <!-- Show weather info -->
@@ -81,6 +90,6 @@
         </div>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="myindex.js"></script>
   </body>
 </html>
