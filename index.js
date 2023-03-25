@@ -8,7 +8,7 @@ const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 const searchInput=document.querySelector("[data-searchInput]");
-
+const eroorContainer=document.querySelector('[errorContainer]')
 
 let currentTab=userTab;
 let API_key = "60e9cd966923d40a6a5e8f40dd2cf6a0";
@@ -74,8 +74,6 @@ async function fetchUserWeatherInfo(coordinates){
     }
     catch(e){
         loadingScreen.classList.remove('active');
-
-        // console.log(e)
     }
 }
 //error handle
